@@ -1,0 +1,36 @@
+<%- include('header') %>
+
+
+<% if(premium_reqs.length === 0){ %>
+
+    No requests found
+
+<% } else { %>
+
+    Your requests
+    <ul class="list-group col-xl-6 col-lg-8 col-md-10 col-12 mx-auto mt-3">
+
+        <% for (let i=0; i < premium_reqs.length; i++){ %>
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+
+                    <span class="w-100"><%= premium_reqs[i].msg.length <= 33 ? premium_reqs[i].msg : premium_reqs[i].msg.slice(0,30) + '...' %></span>
+                    
+                    <span class="mx-1 d-inline-block my-auto">
+                        <% if (premium_reqs[i].result === 1) { %>
+                            <i title="Approved" class="bi bi-check-circle text-success"></i>
+                            <% } else if (premium_reqs[i].result === -1) { %>
+                                <i title="Denied" class="bi bi-x-circle text-danger"></i>
+                                
+                                <% } else { %>
+                                    <a title="Waiting for review" class="bi bi-dash-circle text-warning"></a>
+                                    
+                                    <% } %>
+                    </span>
+            </li>
+        <% } %>
+    </ul>
+
+
+    <a href="/review" class="btn btn-dark my-3">Ask an admin to review your requests</a>
+
+<% } %>

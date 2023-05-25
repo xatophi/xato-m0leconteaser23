@@ -1,0 +1,12 @@
+<%- include('header') %>
+
+<img src=data:image/png;base64,<%= request.img %>>
+
+<p class="my-3"><%= request.msg %></p>
+
+
+<form class="form-group col-lg-2 col-4 mx-auto" method="POST">
+    <input name="csrf" hidden=true value="<%= csrftoken %>" />
+    <button id="deny" class="btn btn-danger my-2" type="submit" name="deny" value="true">Deny</button>
+    <button id="accept" class="btn btn-success my-2" type="submit" name="accept" value="true">Accept</button>
+</form>

@@ -1,0 +1,33 @@
+services:
+  app:
+    build: ./app
+    environment:
+      - FLAG=ptm{just_another_flag}
+      - ADMIN_PASSWORD=changeme2
+      - SECRET_KEY=changeeee
+      - CACHE_HOSTNAME=cache
+      - BOT_SECRET=changeme3
+    # network_mode: host
+    ports:
+      - 3000:3000
+    networks:
+      - botnetwork
+      - backend
+  bot:
+    build: ./bot
+    environment:
+      - ADMIN_PASSWORD=changeme2
+      - CHALL_URL=http://app:3000
+      - BOT_SECRET=changeme3
+    #network_mode: host
+    #ports:
+    #  - 9999:9999
+    networks:
+      - botnetwork
+  cache:
+    image: memcached
+    networks:
+      - backend
+networks:
+  botnetwork:
+  backend:

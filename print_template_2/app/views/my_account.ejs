@@ -1,0 +1,15 @@
+<%- include('header') %>
+
+
+<h2>Hello <%= locals.loggedUser %>!</h2>
+
+<h3><a href="/my-requests">Here</a> you can find your premium requests</h3>
+
+<form class="form-group" method="POST" enctype="multipart/form-data" action="/new-request">
+    <input class="form-control my-2" name="message" placeholder="I need premium to..."/>
+    <input class="form-control" type="file" name="file" />
+    <input name="csrf" hidden=true value="<%= csrftoken %>" />
+    <button class="btn btn-dark w-100 my-2" type="submit">Ask for premium</button>
+</form>
+
+
